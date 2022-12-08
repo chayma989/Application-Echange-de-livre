@@ -1,9 +1,13 @@
+using Echange_Livres.App_Start;
+using Echange_Livres.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+
 
 namespace Echange_Livres
 {
@@ -11,8 +15,11 @@ namespace Echange_Livres
     {
         protected void Application_Start()
         {
+           
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            MapperConfig.Configure();
         }
     }
 }

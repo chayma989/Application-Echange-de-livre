@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+@{
+    ViewBag.Title = "Index";
+    // Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<head>
+    <link href="~/Content/Boostrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- CSS only -->
+</head>
+<body>
+    <nav class="navbar" style="background-color: #cfabde;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Home</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Login/Index">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Account/Index">Créer un compte</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                <form action="/Home/Index" class="d-flex" role="search" method="get">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Category">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <h2>Books Liste</h2>
+    <hr />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</body>
+</html>

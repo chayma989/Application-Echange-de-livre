@@ -1,0 +1,112 @@
+﻿@model Application_Echange_de_livre.Model.Book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Book</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Collection)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Collection)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Editor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Editor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SousTitle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SousTitle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EditionDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EditionDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BookState)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BookState)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
