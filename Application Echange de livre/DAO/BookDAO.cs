@@ -34,13 +34,12 @@ namespace Application_Echange_de_livre.DAO
             context.SaveChanges();
         }
 
-      
-
-        public List<Book> GetdALL()
+        public List<Book> GetALL()
         {
             return context.Books.ToList();
         }
 
+      
         public void SaveOrUpdate(BookExchange exc)
         {
             context.Entry(exc).State = EntityState.Modified;

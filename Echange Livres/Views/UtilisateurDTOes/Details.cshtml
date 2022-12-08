@@ -1,0 +1,82 @@
+﻿@model Echange_Livres.DTOs.UtilisateurDTO
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>UtilisateurDTO</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPoints)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalPoints)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsAdmin)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

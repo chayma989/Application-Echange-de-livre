@@ -9,10 +9,11 @@ namespace Application_Echange_de_livre.Repositories
 {
     public interface IBookRepository
     {
-        List<Book> GetdALL();
+        List<Book> GetALL();
         Book GetBookById(int id);
         void AddBook(Book book);
         void DeleteBook(int id);
         void SaveOrUpdate(BookExchange exc);
+
     }
 }

@@ -13,5 +13,6 @@ namespace Application_Echange_de_livre.Repositories
         Categorie GetCatById(int id);
         void AddCategory(Categorie categorie);
         void DeleteCategory(int id);
+        void Update(Categorie categorie);
     }
 }

@@ -83,8 +83,11 @@
     <Compile Include="Add  Book.Designer.cs">
       <DependentUpon>Add  Book.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\AbonnementDAO.cs" />
     <Compile Include="DAO\BookDAO.cs" />
     <Compile Include="DAO\CategorieDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="DAO\WishDAO.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,14 +126,15 @@
     <Compile Include="Search For Books.Designer.cs">
       <DependentUpon>Search For Books.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\BookService.cs" />
+    <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\WishListeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Add  Book.resx">
       <DependentUpon>Add  Book.cs</DependentUpon>
@@ -163,6 +167,8 @@
     <None Include="Resources\research.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Books_Swap_art1.jpg" />
+    <None Include="Resources\add1.png" />
     <Content Include="Resources\exit.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>

@@ -12,7 +12,14 @@ namespace Application_Echange_de_livre.Model
         public int Id { get; set; }
 
         public User UserId { get; set; }
-        public TypeOfAbo TypeOfAbo { get; set; }
+        public TypeOfAbo Typeabn { get; set; }
+
+        public Abonnement(int id, User userId)
+        {
+            Id = id;
+            UserId = userId;
+            Typeabn = TypeOfAbo.PAS_ABONNE;
+        }
     }
 
     public enum TypeOfAbo

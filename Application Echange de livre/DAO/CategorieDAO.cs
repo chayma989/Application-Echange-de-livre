@@ -25,15 +25,25 @@ namespace Application_Echange_de_livre.DAO
 
         public void DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            Categorie categorie = context.Categories.Find(id);
+
+            context.Categories.Remove(categorie);
+
+            context.SaveChanges();
         }
 
         public List<Categorie> GetdALL()
         {
-            throw new NotImplementedException();
+            return context.Categories.ToList();
         }
 
-        Categorie ICategoryRepository.GetCatById(int id)
+        public void Update(Categorie categorie)
+        {
+            context.Entry(categorie).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        public Categorie GetCatById(int id)
         {
             Categorie cat = context.Categories.Find(id);
             if (cat == null)

@@ -10,6 +10,7 @@ namespace Application_Echange_de_livre.Repositories
      interface IUserRepository
     {
         List<User> FindALL();
+        User FindById(int id);
         void AddUser(User user);
         void DeleteUser(int id);
         void Update(User user);
