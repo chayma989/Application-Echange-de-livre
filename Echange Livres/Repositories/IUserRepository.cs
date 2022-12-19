@@ -8,5 +8,8 @@ namespace Echange_Livres.Repositories
         UserDTO FindUserByUserNameAndPassword(LoginDTO loginDTO);
         List<UserDTO> GetAllUser();
         void Add(UserDTO userDTO);
+        void Delete(UserDTO userDTO);
+        void Update(UserDTO userDTO);
+
     }
 }

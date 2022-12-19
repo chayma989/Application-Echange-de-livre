@@ -3,7 +3,9 @@ using Echange_Livres.DTOs;
 using Echange_Livres.Tools;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 
 namespace Echange_Livres.Repositories
@@ -37,7 +39,6 @@ namespace Echange_Livres.Repositories
                 }
             }
 
-
             return lstDTO;
 
         }
@@ -52,6 +53,27 @@ namespace Echange_Livres.Repositories
                 context.Users.Add(u);
                 context.SaveChanges();
             }
+        }
+
+        public void Delete(UserDTO userDTO)
+        {
+            User u = Convertisseur.UtilisateurFromUtilisateurDTO(userDTO, new User());
+            using (var context = new MyContext())
+            {
+                context.Entry(userDTO).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
+        public void Update(UserDTO userDTO)
+        {
+            User u = Convertisseur.UtilisateurFromUtilisateurDTO(userDTO, new User());
+            using (var context = new MyContext())
+            {            
+                context.Entry(userDTO).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+           
         }
     }
 }

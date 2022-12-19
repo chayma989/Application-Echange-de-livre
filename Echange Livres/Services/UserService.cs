@@ -7,34 +7,38 @@ using System.Web;
 
 namespace Echange_Livres.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private UserRepository userRep = new UserRepository();
-        private UserRepository userRepository;
+        private UserRepository repository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(UserRepository repository)
         {
-            this.userRepository = userRepository;
+            this.repository = repository;
         }
 
-        public UserService()
+        public void Add(UserDTO userDTO)
         {
+            repository.Add(userDTO);
+        }
+
+        public void Delete(UserDTO userDTO)
+        {
+            repository.Delete(userDTO);
         }
 
         public UserDTO FindUserByUserNameAndPassword(LoginDTO loginDTO)
         {
-            UserDTO userDto = userRep.FindUserByUserNameAndPassword(loginDTO);
-            return userDto;
-        }
-
-        public void Add(UserDTO userDto)
-        {
-            userRep.Add(userDto);
+            return repository.FindUserByUserNameAndPassword(loginDTO);
         }
 
         public List<UserDTO> GetAllUser()
         {
-            return userRep.GetAllUser();
+            return repository.GetAllUser();
+        }
+
+        public void Update(UserDTO userDTO)
+        {
+            repository.Update(userDTO);
         }
     }
 }

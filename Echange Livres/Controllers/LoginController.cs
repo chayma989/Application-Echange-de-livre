@@ -1,4 +1,5 @@
 ﻿using Echange_Livres.DTOs;
+using Echange_Livres.Repositories;
 using Echange_Livres.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace Echange_Livres.Controllers
 {
     public class LoginController : Controller
     {
-        private UserService service = new UserService();
+        private UserService Uservice = new UserService(new UserRepository());
+
         // GET: Login
         public ActionResult Index()
         {
@@ -20,7 +22,7 @@ namespace Echange_Livres.Controllers
         [HttpPost]
         public ActionResult Index(LoginDTO loginDTO)
         {
-            UserDTO userDTO = service.FindUserByUserNameAndPassword(loginDTO);
+            UserDTO userDTO = Uservice.FindUserByUserNameAndPassword(loginDTO);
             if (userDTO != null && userDTO.Id != 0)
             {
 

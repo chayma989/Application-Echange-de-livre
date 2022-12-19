@@ -6,62 +6,50 @@
 }
 
 
+
 <head>
-    <link href="~/Content/Boostrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- CSS only -->
+    <title>Menu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/HomeTemplate/css/style.css">
+    <script nonce="0a7b7f56-66eb-4f01-9242-430e79947070">(function (w, d) { !function (eK, eL, eM, eN) { eK.zarazData = eK.zarazData || {}; eK.zarazData.executed = []; eK.zaraz = { deferred: [], listeners: [] }; eK.zaraz.q = []; eK.zaraz._f = function (eO) { return function () { var eP = Array.prototype.slice.call(arguments); eK.zaraz.q.push({ m: eO, a: eP }) } }; for (const eQ of ["track", "set", "debug"]) eK.zaraz[eQ] = eK.zaraz._f(eQ); eK.zaraz.init = () => { var eR = eL.getElementsByTagName(eN)[0], eS = eL.createElement(eN), eT = eL.getElementsByTagName("title")[0]; eT && (eK.zarazData.t = eL.getElementsByTagName("title")[0].text); eK.zarazData.x = Math.random(); eK.zarazData.w = eK.screen.width; eK.zarazData.h = eK.screen.height; eK.zarazData.j = eK.innerHeight; eK.zarazData.e = eK.innerWidth; eK.zarazData.l = eK.location.href; eK.zarazData.r = eL.referrer; eK.zarazData.k = eK.screen.colorDepth; eK.zarazData.n = eL.characterSet; eK.zarazData.o = (new Date).getTimezoneOffset(); if (eK.dataLayer) for (const eX of Object.entries(Object.entries(dataLayer).reduce(((eY, eZ) => ({ ...eY[1], ...eZ[1] }))))) zaraz.set(eX[0], eX[1], { scope: "page" }); eK.zarazData.q = []; for (; eK.zaraz.q.length;) { const e_ = eK.zaraz.q.shift(); eK.zarazData.q.push(e_) } eS.defer = !0; for (const fa of [localStorage, sessionStorage]) Object.keys(fa || {}).filter((fc => fc.startsWith("_zaraz_"))).forEach((fb => { try { eK.zarazData["z_" + fb.slice(7)] = JSON.parse(fa.getItem(fb)) } catch { eK.zarazData["z_" + fb.slice(7)] = fa.getItem(fb) } })); eS.referrerPolicy = "origin"; eS.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(eK.zarazData))); eR.parentNode.insertBefore(eS, eR) };["complete", "interactive"].includes(eL.readyState) ? zaraz.init() : eK.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
 </head>
 <body>
-    <nav class="navbar" style="background-color: #cfabde;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Home</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Login/Index">Connexion</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Account/Index">Créer un compte</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                </ul>
-                <form action="/Home/Index" class="d-flex" role="search" method="get">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Category">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <h2>Books Liste</h2>
-    <hr />
-    <br />
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="list-group">
-
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h1 class="heading-section" style="color:mediumorchid">Welcome</h1>
                 </div>
             </div>
-
-
-
         </div>
-    </div>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Books Exchange</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="/Home/Index" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/Login/Index" class="nav-link">Add Book</a></li>
+                        <li class="nav-item"><a href="/Login/Index" class="nav-link">Search Book</a></li>
+                        <li class="nav-item"><a href="/Login/Index" class="nav-link">Sign In</a></li>
 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+           <img src="~/Content/BookImages/library.jpg" width="1000">
+
+    </section>
+    <script src="~/Content/HomeTemplate/js/jquery.min.js"></script>
+    <script src="~/Content/HomeTemplate/js/popper.js"></script>
+    <script src="~/Content/HomeTemplate/js/bootstrap.min.js"></script>
+    <script src="~/Content/HomeTemplate/js/main.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"778e88b59e3599f4","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
 </body>
 </html>

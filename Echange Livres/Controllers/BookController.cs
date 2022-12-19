@@ -1,103 +1,99 @@
-﻿using System;
+﻿using Application_Echange_de_livre.Model;
+using Echange_Livres.DTOs;
+using Echange_Livres.Repositories;
+using Echange_Livres.Services;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Application_Echange_de_livre.Model;
-using Echange_Livres.Repositories;
 
 namespace Echange_Livres.Controllers
 {
     public class BookController : Controller
     {
-        private MyContext db = new MyContext();
-
         // GET: Book
+        private BookService Bservice = new BookService(new BookRepository());
+        private MyContext context = new MyContext();
+
         public ActionResult Index()
         {
-            return View(db.Books.ToList());
+            List<Book> lstBook = Bservice.GetAll();
+            return View(lstBook);
         }
 
-        // GET: Book/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-            return View(book);
-        }
-
-        // GET: Book/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Book/Create
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ISBN,Price,Collection,Editor,SousTitle,Description,EditionDate,Photo,BookState")] Book book)
+        public ActionResult Create(Book book, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Books.Add(book);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(book);
             }
 
-            return View(book);
+             Book b = new Book();
+             b.Photo = book.Title + Path.GetExtension(file.FileName);
+             file.SaveAs(Server.MapPath("~/Content/BookImages/" + b.Photo));
+
+            b.Title = book.Title;
+            b.Price =Convert.ToDouble(book.Title);
+            b.PointValue = book.PointValue;
+            b.Collection = book.Collection;
+            b.Editor = book.Title;
+            b.Title = book.Editor;
+            b.SubTitle = book.SubTitle;
+            b.Description = book.Description;
+            b.EditionDate = book.EditionDate;
+            b.OwnerId = book.OwnerId;
+            b.BookState = book.BookState;
+            b.Authors = book.Authors;
+            b.Categories = book.Categories;
+
+            Bservice.Add(b);
+            return RedirectToAction("Index");
         }
 
-        // GET: Book/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-            return View(book);
-        }
-
-        // POST: Book/Edit/5
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ISBN,Price,Collection,Editor,SousTitle,Description,EditionDate,Photo,BookState")] Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(book).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(book);
-        }
-
-        // GET: Book/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = context.Books.Find(id);
+
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Book book = context.Books.Find(id);
+            context.Books.Remove(book);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = context.Books.Find(id);
             if (book == null)
             {
                 return HttpNotFound();
@@ -105,24 +101,24 @@ namespace Echange_Livres.Controllers
             return View(book);
         }
 
-        // POST: Book/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Edit([Bind(Include = "Id,Title")] Book book)
         {
-            Book book = db.Books.Find(id);
-            db.Books.Remove(book);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                Bservice.Update(book);
+                return RedirectToAction("Index");
+            }
+            return View(book);
         }
 
-        protected override void Dispose(bool disposing)
+        
+        public ActionResult Search(string search)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            List<Book> lstBook = Bservice.Search(search);
+            return View(lstBook);
         }
+
     }
 }

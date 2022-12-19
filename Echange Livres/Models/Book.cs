@@ -26,13 +26,12 @@ namespace Application_Echange_de_livre.Model
         public int PointValue;//Attribute entre 1 et 10
         public string Collection { get; set; }
         public string Editor { get; set; }
-        public string SousTitle { get; set; }
+        public string SubTitle { get; set; }
 
         [Required]
         public string Description { get; set; }
         public DateTime EditionDate { get; set; }
         public User OwnerId { get; set; }
-        public Author Author { get; set; }
         public string Photo { get; set; }
         public BookState BookState { get; set; }
         public virtual ICollection<Author> Authors { get; set; }

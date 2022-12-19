@@ -1,4 +1,5 @@
 ﻿using Echange_Livres.DTOs;
+using Echange_Livres.Repositories;
 using Echange_Livres.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Echange_Livres.Controllers
 {
     public class AccountController : Controller
     {
-        private UserService service = new UserService();
+        private UserService Uservice = new UserService(new UserRepository());
         // GET: Account
         public ActionResult Index()
         {
@@ -25,10 +26,12 @@ namespace Echange_Livres.Controllers
             {
                 userDto.Photo = userDto.Email + Path.GetExtension(photo.FileName);
                 photo.SaveAs(Server.MapPath("~/Content/UserImage/") + userDto.Photo);
-                service.Add(userDto);
+                Uservice.Add(userDto);
                 return RedirectToAction("Index", "Login");
             }
             return View(userDto);
         }
+
+
     }
 }

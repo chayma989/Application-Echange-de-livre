@@ -30,7 +30,7 @@ namespace Echange_Livres.Repositories
          public virtual DbSet<WishListe> WishListes { get; set; }
          public virtual DbSet<Abonnement> Abonnements { get; set; }
 
-        public System.Data.Entity.DbSet<Echange_Livres.DTOs.UserDTO> UtilisateurDTOes { get; set; }
+        public System.Data.Entity.DbSet<Echange_Livres.DTOs.UserDTO> UserDTOes { get; set; }
 
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.AbonnementDTO> AbonnementDTOes { get; set; }
 
@@ -39,6 +39,7 @@ namespace Echange_Livres.Repositories
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.AuthorDTO> AuthorDTOes { get; set; }
 
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.BookDTOs.BookEchangeDTO> BookEchangeDTOes { get; set; }
+
 
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.WishListeDTO> WishListeDTOes { get; set; }
     }

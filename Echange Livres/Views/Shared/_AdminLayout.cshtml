@@ -48,7 +48,7 @@
                         <img src="~/Content/UserImages/@dto.Photo" class="img-circle elevation-2" alt="User Images">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">@dto.Name</a>
+                       Welcome <a href="#" class="d-block">@dto.Name</a>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/Book/Index" class="nav-link">
+                                        <a href="/Book/Search" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Search Book</p>
                                         </a>
@@ -152,15 +152,15 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Tableau de board</h1>
-
-
-
-                        </div>
+                       
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item active">@Html.ActionLink("Déconnexion", "Logout", "Login")</li>
+                            </ol>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item active">@Html.ActionLink("Back", "Index", "Home")</li>
                             </ol>
                         </div>
                     </div>

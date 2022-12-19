@@ -14,11 +14,12 @@
         {
             <div class="col-sm-6">
                 <input type="text" name="search" placeholder="mot clé...." class="form-control" />
-            </div>
+            </div><br/>
             <div class="col-sm-6">
                 <input type="submit" value="Rechercher" class="btn btn-dark" />
             </div>
         }
+
     </p>
 </div>
 
@@ -35,9 +36,7 @@
             @Html.DisplayNameFor(model => model.Name)
             @Html.ActionLink("↑", "Index", new { search = Request.QueryString["search"], page = Request.QueryString["page"] }, new { sortBy = "nameAsc" })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
@@ -49,9 +48,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalPoints)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsAdmin)
@@ -80,9 +76,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPoints)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.IsAdmin)
             </td>
