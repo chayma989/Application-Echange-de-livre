@@ -81,8 +81,7 @@ namespace Echange_Livres.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = context.Books.Find(id);
-            context.Books.Remove(book);
-            context.SaveChanges();
+            Bservice.Delete(book);
             return RedirectToAction("Index");
         }
 

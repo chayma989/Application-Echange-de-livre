@@ -7,15 +7,10 @@ using System.Web;
 
 namespace Echange_Livres.Repositories
 {
-    public class BookExchangeRepository : IBookExchange
+    public class BookExchangeRepository : IBookExchangeRepository
     {
         private MyContext context;
-        public void Add(BookExchange bookEx)
-        {
-            context.BookExchanges.Add(bookEx);
-            context.SaveChanges();
-        }
-
+       
         public void Delete(BookExchange bookEx)
         {
             context.Entry(bookEx).State = EntityState.Deleted;
@@ -32,10 +27,19 @@ namespace Echange_Livres.Repositories
             return context.BookExchanges.AsNoTracking().ToList();
         }
 
-        public void Update(BookExchange bookEx)
+        public void SaveAndUpdate(BookExchange bookEx)
         {
-            context.Entry(bookEx).State = EntityState.Modified;
+            if (bookEx.Id == 0)
+            {
+                context.BookExchanges.Add(bookEx);
+            }
+            else
+            {
+                context.Entry(bookEx).State = EntityState.Modified;
+            }
             context.SaveChanges();
         }
+
+      
     }
 }

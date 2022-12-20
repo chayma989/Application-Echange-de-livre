@@ -2,6 +2,7 @@
 using Echange_Livres.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -10,17 +11,14 @@ namespace Echange_Livres.Services
     public class BookExchangeService : IBookExchangeService
     {
         private BookExchangeRepository repository;
+        private MyContext context;
 
         public BookExchangeService(BookExchangeRepository repository)
         {
             this.repository = repository;
         }
 
-        public void Add(BookExchange bookEx)
-        {
-            repository.Add(bookEx);
-        }
-
+       
         public void Delete(BookExchange bookEx)
         {
             repository.Delete(bookEx);
@@ -36,9 +34,15 @@ namespace Echange_Livres.Services
             return repository.GetAll();
         }
 
-        public void Update(BookExchange bookEx)
+        public void SaveAndUpdate(BookExchange bookEx)
         {
-             repository.Update(bookEx);
+            repository.SaveAndUpdate(bookEx);
         }
+
+        public void ValidateExchange(Book b, int newOwner)
+        {
+            BookExchange book = (BookExchange) context.Books.Where(bo => bo.Id.Equals(b) || bo.OwnerId.Equals(newOwner));
+            repository.SaveAndUpdate(book);
+        } 
     }
 }

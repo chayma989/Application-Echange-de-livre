@@ -99,7 +99,6 @@ namespace Echange_Livres.Controllers
             user.Name = userDTO.Name;
             user.Email = userDTO.Email;
             user.Password = user.Password;
-            user.Adresse = user.Adresse;
             user.TotalPoints = userDTO.TotalPoints;
             user.IsAdmin = userDTO.IsAdmin;
             user.WishedBooks = userDTO.WishedBooks;

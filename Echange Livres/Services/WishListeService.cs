@@ -9,25 +9,32 @@ namespace Echange_Livres.Services
 {
     public class WishListeService : IWishListeService
     {
-        private WishListeRepository repository;
+       
+        private WishListeRepository wishListeRepository;
+
+        public WishListeService(WishListeRepository wishListeRepository)
+        {
+            this.wishListeRepository = wishListeRepository;
+        }
+
         public void Add(WishListe wishL)
         {
-            repository.Add(wishL);
+            wishListeRepository.Add(wishL);
         }
 
         public void Delete(WishListe wishL)
         {
-            repository.Delete(wishL);
+            wishListeRepository.Delete(wishL);
         }
 
         public WishListe FindById(int id)
         {
-            return repository.FindById(id);
+            return wishListeRepository.FindById(id);
         }
 
         public List<WishListe> GetAll()
         {
-            return repository.GetAll();
+            return wishListeRepository.GetAll();
         }
     }
 }

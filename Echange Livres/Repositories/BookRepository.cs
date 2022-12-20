@@ -50,6 +50,7 @@ namespace Echange_Livres.Repositories
 
         public void Update(Book book)
         {
+           
             context.Entry(book).State = EntityState.Modified;
             context.SaveChanges();
         }

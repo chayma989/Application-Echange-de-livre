@@ -9,10 +9,12 @@ namespace Echange_Livres.Services
 {
     public interface IBookExchangeService
     {
-        void Add(BookExchange bookEx);
         void Delete(BookExchange bookEx);
-        void Update(BookExchange bookEx);
+        void SaveAndUpdate(BookExchange bookEx);
         BookExchange FindById(int id);
         List<BookExchange> GetAll();
+        void ValidateExchange(Book b, int newOwner);
+
+
     }
 }

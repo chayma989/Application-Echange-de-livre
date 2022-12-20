@@ -34,8 +34,8 @@ namespace Application_Echange_de_livre.Model
         public User OwnerId { get; set; }
         public string Photo { get; set; }
         public BookState BookState { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
-        public virtual ICollection<Categorie> Categories { get; set; }
+        public virtual IEnumerable<Author> Authors { get; set; }
+        public virtual IEnumerable<Categorie> Categories { get; set; }
     }
 
     public enum BookState

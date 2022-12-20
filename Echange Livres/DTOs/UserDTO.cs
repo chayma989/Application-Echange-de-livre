@@ -23,10 +23,6 @@ namespace Echange_Livres.DTOs
         [DataType(DataType.Password)]
         [MaxLength(50), MinLength(8)]
         public string Password { get; set; }
-
-        [Required]
-        [MaxLength(50), MinLength(9)]
-        public string Adresse { get; set; }
         public int TotalPoints { get; set; }
         public string Photo { get; set; }
         public bool IsAdmin { get; set; }

@@ -44,7 +44,7 @@
                         Price = c.Double(nullable: false),
                         Collection = c.String(),
                         Editor = c.String(),
-                        SousTitle = c.String(),
+                        SubTitle = c.String(),
                         Description = c.String(nullable: false),
                         EditionDate = c.DateTime(nullable: false),
                         Photo = c.String(),

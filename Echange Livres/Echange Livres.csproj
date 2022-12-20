@@ -2077,7 +2077,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\BookEchangeController.cs" />
+    <Compile Include="Controllers\BookExchangeController.cs" />
     <Compile Include="Controllers\CategorieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -2101,10 +2101,20 @@
     <Compile Include="Migrations\202212131533096_updateBook.designer.cs">
       <DependentUpon>202212131533096_updateBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212201332095_Modification.cs" />
+    <Compile Include="Migrations\202212201332095_Modification.designer.cs">
+      <DependentUpon>202212201332095_Modification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212201358287_modificationuser.cs" />
+    <Compile Include="Migrations\202212201358287_modificationuser.designer.cs">
+      <DependentUpon>202212201358287_modificationuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
+    <Compile Include="Models\Adress.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="DTOs\BookCategorieDTO.cs" />
     <Compile Include="Models\BookExchange.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\User.cs" />
@@ -2117,7 +2127,7 @@
     <Compile Include="Repositories\CategorieRepository.cs" />
     <Compile Include="Repositories\IAbonnementRepository.cs" />
     <Compile Include="Repositories\IAuthorRepository.cs" />
-    <Compile Include="Repositories\IBookExchange.cs" />
+    <Compile Include="Repositories\IBookExchangeRepository.cs" />
     <Compile Include="Repositories\IBookRepository.cs" />
     <Compile Include="Repositories\ICategorieRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -2545,6 +2555,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BookExchange\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -2555,6 +2566,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212131533096_updateBook.resx">
       <DependentUpon>202212131533096_updateBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212201332095_Modification.resx">
+      <DependentUpon>202212201332095_Modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212201358287_modificationuser.resx">
+      <DependentUpon>202212201358287_modificationuser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,7 +18,6 @@ namespace Echange_Livres.Tools
             userDto.Name = model.Name;
             userDto.Email = model.Email;
             userDto.Password = model.Password;
-            userDto.Adresse = model.Adresse;
             userDto.TotalPoints= model.TotalPoints;
             userDto.Photo = model.Photo;
             userDto.IsAdmin = model.IsAdmin;
@@ -35,7 +34,6 @@ namespace Echange_Livres.Tools
             user.Name = userDto.Name;
             user.Email = userDto.Email;
             user.Password = userDto.Password;
-            user.Adresse =userDto.Adresse;
             user.TotalPoints = userDto.TotalPoints;
             user.Photo = userDto.Photo;
             user.IsAdmin = userDto.IsAdmin;

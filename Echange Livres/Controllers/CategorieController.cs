@@ -1,128 +1,98 @@
-﻿using System;
+﻿using Application_Echange_de_livre.Model;
+using Echange_Livres.Repositories;
+using Echange_Livres.Services;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Echange_Livres.DTOs;
-using Echange_Livres.Repositories;
 
 namespace Echange_Livres.Controllers
 {
     public class CategorieController : Controller
     {
-        private MyContext db = new MyContext();
+        private CategorieService catService = new CategorieService(new CategorieRepository());
+        private MyContext context = new MyContext();
 
         // GET: Categorie
         public ActionResult Index()
         {
-            return View(db.CategorieDTOes.ToList());
+            List<Categorie> lstcat = catService.GetAll();
+            return View(lstcat);
         }
 
-        // GET: Categorie/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CategorieDTO categorieDTO = db.CategorieDTOes.Find(id);
-            if (categorieDTO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categorieDTO);
-        }
-
-        // GET: Categorie/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categorie/Create
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] CategorieDTO categorieDTO)
+        public ActionResult Create([Bind(Include="Id,Name")] Categorie cat)
         {
             if (ModelState.IsValid)
             {
-                db.CategorieDTOes.Add(categorieDTO);
-                db.SaveChanges();
+                catService.Add(cat);
                 return RedirectToAction("Index");
             }
 
-            return View(categorieDTO);
+            return View(cat);
         }
 
-        // GET: Categorie/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CategorieDTO categorieDTO = db.CategorieDTOes.Find(id);
-            if (categorieDTO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categorieDTO);
-        }
 
-        // POST: Categorie/Edit/5
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] CategorieDTO categorieDTO)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(categorieDTO).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(categorieDTO);
-        }
-
-        // GET: Categorie/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CategorieDTO categorieDTO = db.CategorieDTOes.Find(id);
-            if (categorieDTO == null)
+            Categorie cat = context.Categories.Find(id);
+
+            if (cat == null)
             {
                 return HttpNotFound();
             }
-            return View(categorieDTO);
+            return View(cat);
+
         }
 
-        // POST: Categorie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CategorieDTO categorieDTO = db.CategorieDTOes.Find(id);
-            db.CategorieDTOes.Remove(categorieDTO);
-            db.SaveChanges();
+            Categorie cat = context.Categories.Find(id);
+            catService.Delete(cat);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+
+        public ActionResult Edit(int? id)
         {
-            if (disposing)
+            if (id == null)
             {
-                db.Dispose();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            base.Dispose(disposing);
+            Categorie cat = context.Categories.Find(id);
+            if (cat == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cat);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name")] Categorie cat)
+        {
+            if (ModelState.IsValid)
+            {
+                catService.Update(cat);
+                return RedirectToAction("Index");
+            }
+            return View(cat);
+        }
+
+
     }
 }

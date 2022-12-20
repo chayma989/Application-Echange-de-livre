@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Echange_Livres.Repositories
 {
-    public interface IBookExchange 
+    public interface IBookExchangeRepository 
     {
-        void Add(BookExchange bookEx);
         void Delete(BookExchange bookEx);
-        void Update(BookExchange bookEx);
+        void SaveAndUpdate(BookExchange bookEx);
         BookExchange FindById(int id);
         List<BookExchange> GetAll();
+
+
     }
 }
