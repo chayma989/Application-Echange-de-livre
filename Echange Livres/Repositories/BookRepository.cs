@@ -14,6 +14,11 @@ namespace Echange_Livres.Repositories
     {
         private MyContext context;
 
+        public BookRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(Book book)
         {
             context.Books.Add(book);
@@ -41,9 +46,8 @@ namespace Echange_Livres.Repositories
         {
             return context.Books.AsNoTracking().Where(b => b.Title.Contains(search)
             || b.Editor.Contains(search) || b.ISBN.Contains(search)
-            || b.Collection.Contains(search) || b.EditionDate.ToString().Contains(search)
-            || b.Authors.ToString().Contains(search) 
-            || b.Categories.ToString().Contains(search)
+            || b.Collection.Contains(search) || b.EditionDate.ToString().Contains(search) 
+           
             ||b.Price.ToString().Contains(search)
             ||b.SubTitle.Contains(search)).ToList();
         }

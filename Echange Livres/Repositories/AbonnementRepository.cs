@@ -10,6 +10,12 @@ namespace Echange_Livres.Repositories
     public class AbonnementRepository : IAbonnementRepository
     {
         private MyContext context;
+
+        public AbonnementRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(Abonnement a)
         {
             context.Abonnements.Add(a);

@@ -5,23 +5,75 @@ using Echange_Livres.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Echange_Livres.Controllers
 {
     public class BookController : Controller
     {
         // GET: Book
-        private BookService Bservice = new BookService(new BookRepository());
+        private BookService Bservice = new BookService(new BookRepository(new MyContext()));
+        private BookExchangeService bookEx = new BookExchangeService(new BookExchangeRepository(new MyContext()));
+
         private MyContext context = new MyContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string sortBy, string search, int page = 0)
         {
             List<Book> lstBook = Bservice.GetAll();
+
+            page = (page < 0) ? 0 : page;
+            int pageSize = 2;
+            int totalPages = 0;
+            if ((lstBook.Count() % pageSize) == 0)
+            {
+                totalPages = lstBook.Count() / pageSize;
+            }
+            else
+            {
+                totalPages = (lstBook.Count() / pageSize) + 1;
+            }
+
+            lstBook = lstBook.Skip(pageSize * page).Take(pageSize).ToList();
+
+            ViewBag.TotalPages = totalPages;
+            ViewBag.Page = page + 1;
+            ViewBag.PreviousPage = page - 1;
+
+            if (lstBook.Count() < pageSize)
+            {
+                ViewBag.Next = page;
+            }
+            else
+            {
+                ViewBag.Next = page + 1;
+            }
+
+
+
+            //Filtre
+            if (search != null)
+            {
+                lstBook = lstBook.Where(b => b.Title.Contains(search)).ToList();
+            }
+
+            //Tri
+            switch (sortBy)
+            {
+                case "nameAsc":
+                    lstBook = lstBook.OrderBy(b => b.Title).ToList();
+                    break;
+                case "nameDesc":
+                    lstBook = lstBook.OrderByDescending(b => b.Title).ToList();
+                    break;
+                case null:
+                    break;
+            }
             return View(lstBook);
         }
 
@@ -31,7 +83,7 @@ namespace Echange_Livres.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Book book, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Photo")]  Book book, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -119,5 +171,63 @@ namespace Echange_Livres.Controllers
             return View(lstBook);
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = context.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
+
+       public ActionResult calculPoints()
+        {
+            Book book = new Book();
+
+            if(book.BookState==BookState.VERY_GOOD)
+            {
+                book.PointValue += 10;
+                ViewBag.Message = "you erned " + book.PointValue;
+            }
+            if (book.BookState == BookState.GOOD)
+            {
+                book.PointValue += 5;
+                ViewBag.Message = "you erned " + book.PointValue;
+            }
+            if (book.BookState == BookState.MEDIOCRE)
+            {
+                book.PointValue += 2;
+                ViewBag.Message = "you erned " + book.PointValue;
+            }
+            else
+            {
+              book.PointValue = 0;
+               ViewBag.Message = "you erned 0 points";
+            }
+            return View(book);
+
+        }
+
+        public ActionResult Exchange(int id, Book b)
+        {
+            Book book = Bservice.FindById(id);
+
+            if(b!=null || id!=null)
+            {
+                bookEx.ValidateExchange(b, id);
+                ViewBag.Message = "Book Exchanged";
+            }
+            return RedirectToAction("Exchange");
+
+        }
+            
+
+          
+        }
+
     }
-}

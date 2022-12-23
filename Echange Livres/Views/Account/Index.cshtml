@@ -1,8 +1,8 @@
-﻿
+﻿@model Echange_Livres.DTOs.UserDTO
 @{
     Layout = null;
 }
-@model Echange_Livres.DTOs.UserDTO
+
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Content/LoginTemplate/fonts/icomoon/style.css"/>
+    <link rel="stylesheet" href="~/Content/LoginTemplate/fonts/icomoon/style.css" />
     <link rel="stylesheet" href="~/Content/LoginTemplate/css/owl.carousel.min.css">
 
     <link rel="stylesheet" href="~/Content/LoginTemplate/css/bootstrap.min.css">
@@ -45,20 +45,20 @@
                                     <input type="text" class="form-control" id="email" placeholder="Email" name="Email" required>
                                 </div>
                                 @Html.ValidationMessageFor(u => u.Password)
-                            <div class="form-group last mb-4">
-                                <style>
-                                    .toggle-password {
-                                        position: absolute;
-                                        top: 40%;
-                                        right: 5%;
-                                        cursor: pointer;
-                                        color: mediumpurple;
-                                    }
-                                </style>
-                                <input type="password" class="form-control" id="password" placeholder="Password" name="Password" required>
-                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                            </div>
-                                @Html.ValidationMessageFor(u => u.Adresse)
+                                <div class="form-group last mb-4">
+                                    <style>
+                                        .toggle-password {
+                                            position: absolute;
+                                            top: 40%;
+                                            right: 5%;
+                                            cursor: pointer;
+                                            color: mediumpurple;
+                                        }
+                                    </style>
+                                    <input type="password" class="form-control" id="password" placeholder="Password" name="Password" required>
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                @Html.ValidationMessageFor(u => u.Adress)
                                 <div class="form-group first">
                                     <input type="text" class="form-control" id="adresse" placeholder="Adresse" name="Adresse" required>
                                 </div>

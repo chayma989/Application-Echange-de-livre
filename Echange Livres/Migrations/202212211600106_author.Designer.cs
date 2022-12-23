@@ -7,13 +7,13 @@ namespace Echange_Livres.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class modificationuser : IMigrationMetadata
+    public sealed partial class author : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(modificationuser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(author));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212201358287_modificationuser"; }
+            get { return "202212211600106_author"; }
         }
         
         string IMigrationMetadata.Source

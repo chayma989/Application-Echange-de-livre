@@ -10,6 +10,13 @@ namespace Echange_Livres.Services
     public class AbonnementService : IAbonnementService
     {
         private AbonnementRepository repository;
+    
+
+        public AbonnementService(AbonnementRepository abonnementRepository)
+        {
+            this.repository = abonnementRepository;
+        }
+
         public void Add(Abonnement a)
         {
             repository.Add(a);

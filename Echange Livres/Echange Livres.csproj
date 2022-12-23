@@ -2083,7 +2083,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WishListeController.cs" />
-    <Compile Include="DTOs\AbonnementDTO.cs" />
     <Compile Include="DTOs\AuthorDTO.cs" />
     <Compile Include="DTOs\BookEchangeDTO.cs" />
     <Compile Include="DTOs\CategorieDTO.cs" />
@@ -2105,16 +2104,26 @@
     <Compile Include="Migrations\202212201332095_Modification.designer.cs">
       <DependentUpon>202212201332095_Modification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212201358287_modificationuser.cs" />
-    <Compile Include="Migrations\202212201358287_modificationuser.designer.cs">
-      <DependentUpon>202212201358287_modificationuser.cs</DependentUpon>
+    <Compile Include="Migrations\202212211123302_modificationUserAdd.cs" />
+    <Compile Include="Migrations\202212211123302_modificationUserAdd.designer.cs">
+      <DependentUpon>202212211123302_modificationUserAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212211600106_author.cs" />
+    <Compile Include="Migrations\202212211600106_author.designer.cs">
+      <DependentUpon>202212211600106_author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212220852199_authorModification.cs" />
+    <Compile Include="Migrations\202212220852199_authorModification.designer.cs">
+      <DependentUpon>202212220852199_authorModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212221303554_abonnementModif.cs" />
+    <Compile Include="Migrations\202212221303554_abonnementModif.designer.cs">
+      <DependentUpon>202212221303554_abonnementModif.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
-    <Compile Include="Models\Adress.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="DTOs\BookCategorieDTO.cs" />
     <Compile Include="Models\BookExchange.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\User.cs" />
@@ -2507,32 +2516,11 @@
     <Content Include="Content\HomeTemplate\scss\style.scss" />
     <None Include="packages.config" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Abonnement\Create.cshtml" />
-    <Content Include="Views\Abonnement\Delete.cshtml" />
-    <Content Include="Views\Abonnement\Details.cshtml" />
-    <Content Include="Views\Abonnement\Edit.cshtml" />
-    <Content Include="Views\Abonnement\Index.cshtml" />
-    <Content Include="Views\Categorie\Create.cshtml" />
-    <Content Include="Views\Categorie\Delete.cshtml" />
-    <Content Include="Views\Categorie\Details.cshtml" />
-    <Content Include="Views\Categorie\Edit.cshtml" />
-    <Content Include="Views\Categorie\Index.cshtml" />
     <Content Include="Views\Author\Create.cshtml" />
     <Content Include="Views\Author\Delete.cshtml" />
     <Content Include="Views\Author\Details.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
-    <Content Include="Views\BookEchange\Create.cshtml" />
-    <Content Include="Views\BookEchange\Delete.cshtml" />
-    <Content Include="Views\BookEchange\Details.cshtml" />
-    <Content Include="Views\BookEchange\Edit.cshtml" />
-    <Content Include="Views\BookEchange\Index.cshtml" />
-    <Content Include="Views\WishListe\Create.cshtml" />
-    <Content Include="Views\WishListe\Delete.cshtml" />
-    <Content Include="Views\WishListe\Details.cshtml" />
-    <Content Include="Views\WishListe\Edit.cshtml" />
-    <Content Include="Views\WishListe\Index.cshtml" />
-    <Content Include="Views\Book\Create.cshtml" />
     <Content Include="Views\Book\Delete.cshtml" />
     <Content Include="Views\Book\Details.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
@@ -2546,6 +2534,27 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Book\Search.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Categorie\Index.cshtml" />
+    <Content Include="Views\Categorie\Create.cshtml" />
+    <Content Include="Views\Categorie\Delete.cshtml" />
+    <Content Include="Views\Categorie\Edit.cshtml" />
+    <Content Include="Views\WishListe\Index.cshtml" />
+    <Content Include="Views\WishListe\Create.cshtml" />
+    <Content Include="Views\WishListe\Delete.cshtml" />
+    <Content Include="Views\WishListe\Details.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Abonnement\Index.cshtml" />
+    <Content Include="Views\Abonnement\Create.cshtml" />
+    <Content Include="Views\Abonnement\Delete.cshtml" />
+    <Content Include="Views\Abonnement\Edit.cshtml" />
+    <Content Include="Views\BookExchange\Delete.cshtml" />
+    <Content Include="Views\BookExchange\Index.cshtml" />
+    <Content Include="Views\BookExchange\Save.cshtml" />
+    <Content Include="Views\BookExchange\Update.cshtml" />
+    <Content Include="Views\Book\Exchange.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2555,7 +2564,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BookExchange\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -2570,8 +2578,17 @@
     <EmbeddedResource Include="Migrations\202212201332095_Modification.resx">
       <DependentUpon>202212201332095_Modification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212201358287_modificationuser.resx">
-      <DependentUpon>202212201358287_modificationuser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212211123302_modificationUserAdd.resx">
+      <DependentUpon>202212211123302_modificationUserAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212211600106_author.resx">
+      <DependentUpon>202212211600106_author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212220852199_authorModification.resx">
+      <DependentUpon>202212220852199_authorModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212221303554_abonnementModif.resx">
+      <DependentUpon>202212221303554_abonnementModif.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

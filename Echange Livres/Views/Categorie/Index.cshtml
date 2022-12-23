@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Echange_Livres.DTOs.CategorieDTO>
+﻿@model IEnumerable<Application_Echange_de_livre.Model.Categorie>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,29 +14,66 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        
     </p>
-    <table class="table">
+    <table id="category">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>
+                Manage Categories
+            </th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Create New", "Create")
+
+                </td>
+            </tr>
+        }
+
     </table>
+
+
+
+    <style>
+
+        #category {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+            #category td, #category th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #category tr:nth-child(even) {
+                background-color: #f7f0f0;
+            }
+
+            #category tr:hover {
+                background-color: #dbc0e6;
+            }
+
+            #category th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #9a7be8;
+                color: white;
+            }
+    </style>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ using Echange_Livres.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 
 namespace Echange_Livres.Services
@@ -10,6 +11,7 @@ namespace Echange_Livres.Services
     public class BookService : IBookService
     {
         private BookRepository repository;
+        private MyContext context;
 
         public BookService(BookRepository repository)
         {
@@ -45,5 +47,7 @@ namespace Echange_Livres.Services
         {
             repository.Update(book);
         }
+
+       
     }
 }

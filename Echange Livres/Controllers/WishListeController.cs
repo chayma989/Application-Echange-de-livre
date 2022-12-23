@@ -12,7 +12,7 @@ namespace Echange_Livres.Controllers
 {
     public class WishListeController : Controller
     {
-        private WishListeService Wservice = new WishListeService(new WishListeRepository());
+        private WishListeService Wservice = new WishListeService(new WishListeRepository(new MyContext()));
         private MyContext context = new MyContext();
 
         // GET: WishListe
@@ -64,6 +64,21 @@ namespace Echange_Livres.Controllers
            WishListe wish = context.WishListes.Find(id);
             Wservice.Delete(wish);
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WishListe wish = context.WishListes.Find(id);
+            if (wish == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wish);
         }
 
     }

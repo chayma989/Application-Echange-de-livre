@@ -16,7 +16,7 @@
                 <input type="text" name="search" placeholder="mot clé...." class="form-control" />
             </div><br/>
             <div class="col-sm-6">
-                <input type="submit" value="Rechercher" class="btn btn-dark" />
+                <input type="submit" value="Rechercher" style="color: #6a64f1" />
             </div>
         }
 
@@ -27,7 +27,7 @@
     @Html.ActionLink("Create User", "Create")
 </p>
 
-<table class="table table-striped table-hover">
+<table id="user">
 
     <tr>
 
@@ -52,7 +52,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Photo)
         </th>
-        <th></th>
+        <th>Manage Users</th>
     </tr>
 
     @foreach (var item in Model)
@@ -87,6 +87,35 @@
     }
 
 </table>
+<style>
+
+    #user {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 90%;
+    }
+
+        #user td, #user th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #user tr:nth-child(even) {
+            background-color: #f7f0f0;
+        }
+
+        #user tr:hover {
+            background-color: #dbc0e6;
+        }
+
+        #user th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #9a7be8;
+            color: white;
+        }
+</style>
 <br />
 <nav aria-label="Page navigation example">
     <ul class="pagination">
@@ -100,3 +129,4 @@
 <div class="d-flex justify-content-end">
     Page @ViewBag.Page sur @ViewBag.TotalPages
 </div>
+

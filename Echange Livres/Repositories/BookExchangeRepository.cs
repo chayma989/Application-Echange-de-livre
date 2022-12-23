@@ -10,7 +10,12 @@ namespace Echange_Livres.Repositories
     public class BookExchangeRepository : IBookExchangeRepository
     {
         private MyContext context;
-       
+
+        public BookExchangeRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Delete(BookExchange bookEx)
         {
             context.Entry(bookEx).State = EntityState.Deleted;

@@ -1,370 +1,131 @@
 ﻿@model Application_Echange_de_livre.Model.Book
 
-    @{
-        Layout = null;
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Collection, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Collection, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Collection, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Editor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Editor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Editor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EditionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EditionDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EditionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookState, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.BookState, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BookState, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<style>
+    input[type=text], select {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Form-v10 by Colorlib</title>
+    input[type=submit] {
+        width: 60%;
+        background-color: #6a64f1;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        input[type=submit]:hover {
+            background-color: #6a64f1;
+        }
 
-
-
-        <body>
-            <div class="formbold-main-wrapper">
-                <!-- Author: FormBold Team -->
-                <!-- Learn More: https://formbold.com -->
-                <div class="formbold-form-wrapper">
-
-
-                    <link rel="stylesheet" type="text/css" href="~/Content/BookTemplate/css/montserrat-font.css">
-                    <link rel="stylesheet" type="text/css" href="~/Content/BookTemplate/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-
-                    <link rel="stylesheet" href="~/Content/BookTemplate/css/style.css" />
-                    <meta name="robots" content="noindex, follow">
-                    <script nonce="0db858c2-b814-4c23-8ef4-75d91bc10b81">(function (w, d) { !function (cM, cN, cO, cP) { cM.zarazData = cM.zarazData || {}; cM.zarazData.executed = []; cM.zaraz = { deferred: [], listeners: [] }; cM.zaraz.q = []; cM.zaraz._f = function (cQ) { return function () { var cR = Array.prototype.slice.call(arguments); cM.zaraz.q.push({ m: cQ, a: cR }) } }; for (const cS of ["track", "set", "debug"]) cM.zaraz[cS] = cM.zaraz._f(cS); cM.zaraz.init = () => { var cT = cN.getElementsByTagName(cP)[0], cU = cN.createElement(cP), cV = cN.getElementsByTagName("title")[0]; cV && (cM.zarazData.t = cN.getElementsByTagName("title")[0].text); cM.zarazData.x = Math.random(); cM.zarazData.w = cM.screen.width; cM.zarazData.h = cM.screen.height; cM.zarazData.j = cM.innerHeight; cM.zarazData.e = cM.innerWidth; cM.zarazData.l = cM.location.href; cM.zarazData.r = cN.referrer; cM.zarazData.k = cM.screen.colorDepth; cM.zarazData.n = cN.characterSet; cM.zarazData.o = (new Date).getTimezoneOffset(); if (cM.dataLayer) for (const cZ of Object.entries(Object.entries(dataLayer).reduce(((c_, da) => ({ ...c_[1], ...da[1] }))))) zaraz.set(cZ[0], cZ[1], { scope: "page" }); cM.zarazData.q = []; for (; cM.zaraz.q.length;) { const db = cM.zaraz.q.shift(); cM.zarazData.q.push(db) } cU.defer = !0; for (const dc of [localStorage, sessionStorage]) Object.keys(dc || {}).filter((de => de.startsWith("_zaraz_"))).forEach((dd => { try { cM.zarazData["z_" + dd.slice(7)] = JSON.parse(dc.getItem(dd)) } catch { cM.zarazData["z_" + dd.slice(7)] = dc.getItem(dd) } })); cU.referrerPolicy = "origin"; cU.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(cM.zarazData))); cT.parentNode.insertBefore(cU, cT) };["complete", "interactive"].includes(cN.readyState) ? zaraz.init() : cM.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
-                    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-                    <link rel="stylesheet" href="~/Content/BookTableTemplate/css/style.css">
-                    <script nonce="6fa0db85-8654-4838-a2e7-5faf7643c222">(function (w, d) { !function (cM, cN, cO, cP) { cM.zarazData = cM.zarazData || {}; cM.zarazData.executed = []; cM.zaraz = { deferred: [], listeners: [] }; cM.zaraz.q = []; cM.zaraz._f = function (cQ) { return function () { var cR = Array.prototype.slice.call(arguments); cM.zaraz.q.push({ m: cQ, a: cR }) } }; for (const cS of ["track", "set", "debug"]) cM.zaraz[cS] = cM.zaraz._f(cS); cM.zaraz.init = () => { var cT = cN.getElementsByTagName(cP)[0], cU = cN.createElement(cP), cV = cN.getElementsByTagName("title")[0]; cV && (cM.zarazData.t = cN.getElementsByTagName("title")[0].text); cM.zarazData.x = Math.random(); cM.zarazData.w = cM.screen.width; cM.zarazData.h = cM.screen.height; cM.zarazData.j = cM.innerHeight; cM.zarazData.e = cM.innerWidth; cM.zarazData.l = cM.location.href; cM.zarazData.r = cN.referrer; cM.zarazData.k = cM.screen.colorDepth; cM.zarazData.n = cN.characterSet; cM.zarazData.o = (new Date).getTimezoneOffset(); if (cM.dataLayer) for (const cZ of Object.entries(Object.entries(dataLayer).reduce(((c_, da) => ({ ...c_[1], ...da[1] }))))) zaraz.set(cZ[0], cZ[1], { scope: "page" }); cM.zarazData.q = []; for (; cM.zaraz.q.length;) { const db = cM.zaraz.q.shift(); cM.zarazData.q.push(db) } cU.defer = !0; for (const dc of [localStorage, sessionStorage]) Object.keys(dc || {}).filter((de => de.startsWith("_zaraz_"))).forEach((dd => { try { cM.zarazData["z_" + dd.slice(7)] = JSON.parse(dc.getItem(dd)) } catch { cM.zarazData["z_" + dd.slice(7)] = dc.getItem(dd) } })); cU.referrerPolicy = "origin"; cU.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(cM.zarazData))); cT.parentNode.insertBefore(cU, cT) };["complete", "interactive"].includes(cN.readyState) ? zaraz.init() : cM.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
-
-                    @using (Html.BeginForm("Index", "Book", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                <form action="https://formbold.com/s/FORM_ID" method="POST">
-                    <div class="formbold-form-title">
-
-                        <h2 class="" style="color:darkslateblue">Manage Books</h2>
-                        <p>
-
-                        </p>
-                    </div>
-
-                    <div class="formbold-input-flex">
-                        <div>
-
-                            <label for="title" class="formbold-form-label">
-                                Title
-                            </label>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                </div>
-                                <input type="text"
-                                       name="Title"
-                                       id="title"
-                                       class="formbold-form-input" />
-                            </div>
-                            <div>
-                                <label for="isbn" class="formbold-form-label"> ISBN </label>
-                                @Html.ValidationMessageFor(b => b.ISBN)
-                                <input type="text"
-                                       name="ISBN"
-                                       id="isbn"
-                                       class="formbold-form-input" />
-                            </div>
-                        </div>
-
-                    <div class="formbold-input-flex">
-                        <div>
-                            <label for="price" class="formbold-form-label"> Price </label>
-                            @Html.ValidationMessageFor(b => b.Price)
-                            <input type="text"
-                                   name="Price"
-                                   id="price"
-                                   class="formbold-form-input" />
-                        </div>
-                        <div>
-                            @Html.ValidationMessageFor(b => b.Collection)
-                            <label for="collection" class="formbold-form-label"> Collection </label>
-                            <input type="text"
-                                   name="Collection"
-                                   id="collection"
-                                   class="formbold-form-input" />
-                        </div>
-                    </div>
-
-                    <div class="formbold-mb-3">
-                        @Html.ValidationMessageFor(b => b.Editor)
-                        <label for="editor" class="formbold-form-label">
-                            Editor
-                        </label>
-                        <input type="text"
-                               name="Editor"
-                               id="editor"
-                               class="formbold-form-input" />
-                    </div>
-
-                    <div class="formbold-mb-3">
-                        @Html.ValidationMessageFor(b => b.SubTitle)
-                        <label for="subtitle" class="formbold-form-label">
-                            SubTitle
-                        </label>
-                        <input type="text"
-                               name="Subtitle"
-                               id="subtitle"
-                               class="formbold-form-input" />
-                    </div>
-                    <div class="formbold-mb-3">
-                        @Html.ValidationMessageFor(b => b.Authors)
-                        <label for="author" class="formbold-form-label">
-                            Author
-                        </label>
-                        <input type="text"
-                               name="author"
-                               id="author"
-                               class="formbold-form-input" />
-                    </div>
-
-                    <div>
-                        @Html.ValidationMessageFor(b => b.Description)
-                        <label for="message" class="formbold-form-label">
-                            Description
-                        </label>
-                        <textarea rows="6"
-                                  name="description"
-                                  id="message"
-                                  placeholder="Type here..."
-                                  class="formbold-form-input"></textarea>
-                    </div>
-                    <div>
-                        <div class="formbold-mb-3">
-                            @Html.ValidationMessageFor(b => b.EditionDate)
-                            <label for="Edition Date" class="formbold-form-label"> Edition Date </label>
-                            <input type="date"
-                                   name="Edition Date"
-                                   id="editiondate"
-                                   class="formbold-form-input" />
-                        </div>
-                    </div>
-
-                    <style>
-                        #option-1 {
-                            color: forestgreen;
-                        }
-
-                        #option-2 {
-                            color: yellow;
-                        }
-
-                        #option-3 {
-                            color: orange;
-                        }
-
-                        #option-4 {
-                            color: orangered;
-                        }
-                    </style>
-                    @Html.DropDownListFor(b => b.BookState, TempData["BookState"] as SelectList)
-                    <label class="formbold-form-label">Book State</label>
-
-                    <!-- <select class="formbold-form-input" name="occupation" id="occupation">
-        <option id="option-1" value="verygood">Very Good</option>
-        <option id="option-2" value="good">Good</option>
-        <option id="option-3" value="mediocre">Mediocre</option>
-        <option id="option-4" value="worn">Worn</option>
-    </select>-->
-
-                    @Html.DropDownListFor(b=>b.Categories, new SelectList(Model.Categories, "Categories", "Categories"))
-                    <label class="formbold-form-label">Category</label>
-
-                    <!--<select class="formbold-form-input" name="occupation" id="occupation">
-        <option value="verygood">Adventure stories</option>
-        <option value="good">Crime</option>
-        <option value="mediocre">Fantasy</option>
-        <option value="worn">Historical fiction</option>
-        <option value="worn">Classics</option>
-        <option value="worn">Humour and satire</option>
-        <option value="worn">Romance</option>
-        <option value="worn">Poetry</option>
-        <option value="worn">Horror</option>
-    </select>-->
-
-                    <div class="formbold-mb-3">
-                        @Html.ValidationMessageFor(b => b.Photo)
-                        <label for="upload" class="formbold-form-label">
-                            Photo
-                        </label>
-                        <input type="file"
-                               name="upload"
-                               id="upload"
-                               class="formbold-form-input formbold-form-file" />
-                    </div>
-
-                    <button class="formbold-btn">Add Book</button>
-                    <button class="formbold-btn">Delete Book</button>
-                    <button class="formbold-btn">Edit Book</button>
-
-                </form>
-
-                    }
-
-                    <style>
-
-                        body {
-                            font-family: 'Inter', sans-serif;
-                        }
-
-                        .formbold-mb-3 {
-                            margin-bottom: 15px;
-                        }
-
-                        .formbold-relative {
-                            position: relative;
-                        }
-
-                        .formbold-opacity-0 {
-                            opacity: 0;
-                        }
-
-                        .formbold-stroke-current {
-                            stroke: currentColor;
-                        }
-
-                        #supportCheckbox:checked ~ div span {
-                            opacity: 1;
-                        }
-
-                        .formbold-main-wrapper {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            padding: 48px;
-                        }
-
-                        .formbold-form-wrapper {
-                            margin: 0 auto;
-                            max-width: 570px;
-                            width: 100%;
-                            background: white;
-                            padding: 40px;
-                        }
-
-                        .formbold-img {
-                            margin-bottom: 45px;
-                        }
-
-                        .formbold-form-title {
-                            margin-bottom: 30px;
-                        }
-
-                            .formbold-form-title h2 {
-                                font-weight: 600;
-                                font-size: 28px;
-                                line-height: 34px;
-                                color: #07074d;
-                            }
-
-                            .formbold-form-title p {
-                                font-size: 16px;
-                                line-height: 24px;
-                                color: #536387;
-                                margin-top: 12px;
-                            }
-
-                        .formbold-input-flex {
-                            display: flex;
-                            gap: 20px;
-                            margin-bottom: 15px;
-                        }
-
-                            .formbold-input-flex > div {
-                                width: 50%;
-                            }
-
-                        .formbold-form-input {
-                            text-align: center;
-                            width: 100%;
-                            padding: 13px 22px;
-                            border-radius: 5px;
-                            border: 1px solid #dde3ec;
-                            background: #ffffff;
-                            font-weight: 500;
-                            font-size: 16px;
-                            color: #536387;
-                            outline: none;
-                            resize: none;
-                        }
-
-                            .formbold-form-input:focus {
-                                border-color: #6a64f1;
-                                box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-                            }
-
-                        .formbold-form-label {
-                            color: #536387;
-                            font-size: 14px;
-                            line-height: 24px;
-                            display: block;
-                            margin-bottom: 10px;
-                        }
-
-                        .formbold-checkbox-label {
-                            display: flex;
-                            cursor: pointer;
-                            user-select: none;
-                            font-size: 16px;
-                            line-height: 24px;
-                            color: #536387;
-                        }
-
-                            .formbold-checkbox-label a {
-                                margin-left: 5px;
-                                color: #6a64f1;
-                            }
-
-                        .formbold-input-checkbox {
-                            position: absolute;
-                            width: 1px;
-                            height: 1px;
-                            padding: 0;
-                            margin: -1px;
-                            overflow: hidden;
-                            clip: rect(0, 0, 0, 0);
-                            white-space: nowrap;
-                            border-width: 0;
-                        }
-
-                        .formbold-form-input:focus {
-                            border-color: #6a64f1;
-                            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-                        }
-
-                        .formbold-checkbox-inner {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 16px;
-                            margin-top: 2px;
-                            border: 0.7px solid #dde3ec;
-                            border-radius: 3px;
-                        }
-
-                        .formbold-btn {
-                            font-size: 16px;
-                            border-radius: 5px;
-                            padding: 14px 25px;
-                            border: none;
-                            font-weight: 500;
-                            background-color: #6a64f1;
-                            color: white;
-                            cursor: pointer;
-                            margin-top: 25px;
-                        }
-
-                            .formbold-btn:hover {
-                                box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-                            }
-                    </style>
-
-        </body>
-</html>
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>

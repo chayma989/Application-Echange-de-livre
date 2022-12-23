@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 
 namespace Echange_Livres.Repositories
@@ -16,6 +17,7 @@ namespace Echange_Livres.Repositories
         {
             UserDTO userDto = new UserDTO();
 
+          
             using (var context = new MyContext())
             {
                 User model =
@@ -75,5 +77,6 @@ namespace Echange_Livres.Repositories
             }
            
         }
+
     }
 }

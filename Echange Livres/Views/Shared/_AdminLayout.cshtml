@@ -48,7 +48,7 @@
                         <img src="~/Content/UserImages/@dto.Photo" class="img-circle elevation-2" alt="User Images">
                     </div>
                     <div class="info">
-                       Welcome <a href="#" class="d-block">@dto.Name</a>
+                        Welcome <a href="#" class="d-block">@dto.Name</a>
                     </div>
                 </div>
 
@@ -74,12 +74,11 @@
                         @if (Session["Admin"] != null)
                         {
 
-
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        Dashboard
+                                       Tasks
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
@@ -93,7 +92,7 @@
                                     <li class="nav-item">
                                         <a href="/Book/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Add Book</p>
+                                            <p>Manage Books</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -134,9 +133,9 @@
                                                 <p>Books</p>
                                             </a>
                                         </li>
-                                        </ul>
                                     </ul>
-</li>
+                                </ul>
+                            </li>
                         }
                         else
                         {
@@ -144,13 +143,13 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        Dashboard
+                                       Tasks
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="/Book/Index" class="nav-link">
+                                        <a href="/Book/Create" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Add Book</p>
                                         </a>
@@ -195,55 +194,54 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                       
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item active">@Html.ActionLink("Déconnexion", "Logout", "Login")</li>
-                            </ol>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-left">
-                                <li class="breadcrumb-item active">@Html.ActionLink("Back", "Index", "Home")</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+            
 
-            <!-- Main content -->
             <section class="content">
                 @RenderBody()
             </section>
-            <!-- /.content -->
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div >
+                    <div>
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">@Html.ActionLink("Déconnexion", "Logout", "Login")</li>
+                                <li class="breadcrumb-item active">@Html.ActionLink("Back", "Index", "Home")</li>
+                            </ol>
+                        </div>
+                        <div class="content-wrapper">
+                            <ol class="breadcrumb float-sm-right">
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="float-right d-none d-sm-block">
+                </div>
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
         </div>
-        <!-- /.content-wrapper -->
-
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-    <!-- jQuery -->
-    <script src="~/Content/AdminTemplate/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/Content/AdminTemplate/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/Content/AdminTemplate/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/Content/AdminTemplate/dist/js/demo.js"></script>
+        <!-- ./wrapper -->
+        <!-- jQuery -->
+        <script src="~/Content/AdminTemplate/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/Content/AdminTemplate/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/Content/AdminTemplate/dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="~/Content/AdminTemplate/dist/js/demo.js"></script>
 </body>
 </html>
 

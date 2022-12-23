@@ -10,6 +10,7 @@ namespace Echange_Livres.Repositories
         void Add(UserDTO userDTO);
         void Delete(UserDTO userDTO);
         void Update(UserDTO userDTO);
+      
 
     }
 }

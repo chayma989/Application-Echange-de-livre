@@ -26,6 +26,7 @@ namespace Echange_Livres.DTOs
         public int TotalPoints { get; set; }
         public string Photo { get; set; }
         public bool IsAdmin { get; set; }
+        public string Adress { get; set; }
         public virtual ICollection<Book> WishedBooks { get; set; }
     }
 }

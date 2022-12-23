@@ -12,7 +12,8 @@ namespace Echange_Livres.Controllers
 {
     public class CategorieController : Controller
     {
-        private CategorieService catService = new CategorieService(new CategorieRepository());
+        // GET: Categorie
+        private CategorieService catService = new CategorieService(new CategorieRepository(new MyContext()));
         private MyContext context = new MyContext();
 
         // GET: Categorie
@@ -29,7 +30,7 @@ namespace Echange_Livres.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name")] Categorie cat)
+        public ActionResult Create([Bind(Include = "Id,Name")] Categorie cat)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +93,6 @@ namespace Echange_Livres.Controllers
             }
             return View(cat);
         }
-
 
     }
 }

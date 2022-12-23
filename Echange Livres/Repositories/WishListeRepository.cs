@@ -10,6 +10,12 @@ namespace Echange_Livres.Repositories
     public class WishListeRepository : IWishListeRepository
     {
         private MyContext context;
+
+        public WishListeRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(WishListe wishL)
         {
             context.WishListes.Add(wishL);
@@ -20,6 +26,12 @@ namespace Echange_Livres.Repositories
         {
             context.Entry(wishL).State = EntityState.Deleted;
             context.SaveChanges();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is WishListeRepository repository &&
+                   EqualityComparer<MyContext>.Default.Equals(context, repository.context);
         }
 
         public WishListe FindById(int id)

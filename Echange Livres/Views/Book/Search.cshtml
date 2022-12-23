@@ -1,229 +1,150 @@
-﻿
-@model IEnumerable<Application_Echange_de_livre.Model.Book>
+﻿@model IEnumerable<Application_Echange_de_livre.Model.Book>
 
 @{
     ViewBag.Title = "Search";
-    // Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h2>Search</h2>
+<div class="container">
+    <p>
+        @using (Html.BeginForm("Index", "Book", FormMethod.Get))
+        {
+            <div class="col-sm-6">
+                <input type="text" name="searchT" placeholder="Title" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchI" placeholder="ISBN" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchC" placeholder="Collection" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchE" placeholder="Editor" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchED" placeholder="Edition Date" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchP" placeholder="Price" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="searchSub" placeholder="SubTitle" class="form-control" />
+            </div><br/>
+            <div class="col-sm-6">
+                <input type="submit" value="Rechercher" style="color: #6a64f1" />
+            </div>
+        }
 
-<!DOCTYPE html>
-<html lang="en">
+    </p>
+</div>
+<table id="Search">
 
-<head>
-    <div class="formbold-main-wrapper">
-        <!-- Author: FormBold Team -->
-        <!-- Learn More: https://formbold.com -->
-        <div class="formbold-form-wrapper">
-            <form action="https://formbold.com/s/FORM_ID" method="POST">
-                @using (Html.BeginForm("Search", "Book", FormMethod.Get))
-                {
-                    <div class="flex flex-wrap formbold--mx-3">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Editor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookState)
+        </th>
 
-                        <div class="w-full sm:w-half formbold-px-3">
-                            <div class="formbold-mb-5">
+        <th>Manage Books</th>
+    </tr>
 
-                                <label for="Title" class="formbold-form-label"> Title </label>
-                                <input type="text"
-                                       name="Title"
-                                       id="Title"
-                                       placeholder="Title"
-                                       class="formbold-form-input" />
-                            </div>
-                        </div>
-                        <div class="w-full sm:w-half formbold-px-3">
-                            <div class="formbold-mb-5">
-                                <label for="isbn" class="formbold-form-label">ISBN </label>
-                                <input type="text"
-                                       name="isbn"
-                                       id="isbn"
-                                       placeholder="xxxxxxxxxxxxx"
-                                       class="formbold-form-input" />
-                            </div>
-                        </div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Collection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookState)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Exchange", "Exchange", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
-                        <div class="w-full sm:w-half formbold-px-3">
-                            <div class="formbold-mb-5">
-                                <label for="editor" class="formbold-form-label">Editor </label>
-                                <input type="text"
-                                       name="editor"
-                                       id="editor"
-                                       placeholder="Editor"
-                                       class="formbold-form-input" />
-                            </div>
-                        </div>
-                        <div>
-                            <label for="message" class="formbold-form-label">
-                                Description
-                            </label>
-                            <textarea rows="6"
-                                      name="description"
-                                      id="message"
-                                      placeholder="Type here..."
-                                      class="formbold-form-input"></textarea>
-                        </div>
-
-                        <div class="w-full sm:w-half formbold-px-3">
-                            <div class="formbold-mb-5">
-                                <label for="author" class="formbold-form-label">Author </label>
-                                <input type="text"
-                                       name="author"
-                                       id="author"
-                                       placeholder="Author"
-                                       class="formbold-form-input" />
-                            </div>
-                        </div>
-
-                        <label class="formbold-form-label">Category</label>
-
-                        <select class="formbold-form-input" name="occupation" id="occupation">
-                            <option value="verygood">Adventure stories</option>
-                            <option value="good">Crime</option>
-                            <option value="mediocre">Fantasy</option>
-                            <option value="worn">Historical fiction</option>
-                            <option value="worn">Classics</option>
-                            <option value="worn">Humour and satire</option>
-                            <option value="worn">Romance</option>
-                            <option value="worn">Poetry</option>
-                            <option value="worn">Horror</option>
-                        </select>
-
-                        <label class="formbold-form-label">Sort By</label>
-
-                        <select class="formbold-form-input" name="occupation" id="occupation">
-                            <option value="verygood">Author</option>
-                            <option value="good">Editor</option>
-                            <option value="mediocre">State</option>
-                            <option value="mediocre">Category</option>
-
-                        </select>
-                    </div>
-                }
-
-                <button class="formbold-btn">Search</button>
-
-            </form>
-
-        </div>
-    </div>
-</head>
-</html>
+</table>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+
+    #Search {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 90%;
     }
 
-    body {
-        font-family: "Inter", sans-serif;
-    }
-
-    .formbold-mb-5 {
-        margin-bottom: 20px;
-    }
-
-    .formbold-pt-3 {
-        padding-top: 12px;
-    }
-
-    .formbold-main-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 48px;
-    }
-
-    .formbold-form-wrapper {
-        margin: 0 auto;
-        max-width: 550px;
-        width: 100%;
-        background: white;
-    }
-
-    .formbold-form-label {
-        display: block;
-        font-weight: 500;
-        font-size: 16px;
-        color: #07074d;
-        margin-bottom: 12px;
-    }
-
-    .formbold-form-label-2 {
-        font-weight: 600;
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .formbold-form-input {
-        width: 100%;
-        padding: 12px 24px;
-        border-radius: 6px;
-        border: 1px solid #e0e0e0;
-        background: white;
-        font-weight: 500;
-        font-size: 16px;
-        color: #6b7280;
-        outline: none;
-        resize: none;
-    }
-
-        .formbold-form-input:focus {
-            border-color: #6a64f1;
-            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        #Search td, #Search th {
+            border: 1px solid #ddd;
+            padding: 8px;
         }
 
-    .formbold-btn {
-        text-align: center;
-        font-size: 16px;
-        border-radius: 6px;
-        padding: 14px 32px;
-        border: none;
-        font-weight: 600;
-        background-color: #6a64f1;
-        color: white;
-        cursor: pointer;
-    }
-
-        .formbold-btn:hover {
-            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        #Search tr:nth-child(even) {
+            background-color: #f7f0f0;
         }
 
-    .formbold--mx-3 {
-        margin-left: -12px;
-        margin-right: -12px;
-    }
+        #Search tr:hover {
+            background-color: #dbc0e6;
+        }
 
-    .formbold-px-3 {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .flex {
-        display: flex;
-    }
-
-    .flex-wrap {
-        flex-wrap: wrap;
-    }
-
-    .w-full {
-        width: 100%;
-    }
-
-    .formbold-radio {
-        width: 20px;
-        height: 20px;
-    }
-
-    .formbold-radio-label {
-        font-weight: 500;
-        font-size: 16px;
-        padding-left: 12px;
-        color: #070707;
-        padding-right: 20px;
-    }
+        #Search th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #9a7be8;
+            color: white;
+        }
 </style>
-
-

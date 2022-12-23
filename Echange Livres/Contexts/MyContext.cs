@@ -32,8 +32,6 @@ namespace Echange_Livres.Repositories
 
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.UserDTO> UserDTOes { get; set; }
 
-        public System.Data.Entity.DbSet<Echange_Livres.DTOs.AbonnementDTO> AbonnementDTOes { get; set; }
-
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.CategorieDTO> CategorieDTOes { get; set; }
 
         public System.Data.Entity.DbSet<Echange_Livres.DTOs.AuthorDTO> AuthorDTOes { get; set; }

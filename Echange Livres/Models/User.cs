@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Echange_de_livre.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Application_Echange_de_livre.Model
         public int TotalPoints { get; set; }
         public string Photo { get; set; }
         public bool IsAdmin { get; set; }
+        public string Adress { get; set; }
         public virtual ICollection<Book> WishedBooks { get; set; }
 
     }

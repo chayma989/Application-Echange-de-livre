@@ -1,128 +1,104 @@
-﻿using System;
+﻿using Application_Echange_de_livre.Model;
+using Echange_Livres.Repositories;
+using Echange_Livres.Services;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Echange_Livres.DTOs;
-using Echange_Livres.Repositories;
 
 namespace Echange_Livres.Controllers
 {
     public class AbonnementController : Controller
     {
-        private MyContext db = new MyContext();
+        // GET: Abonnement
+        private AbonnementService AService = new AbonnementService(new AbonnementRepository(new MyContext()));
+        private MyContext context = new MyContext();
+
 
         // GET: Abonnement
         public ActionResult Index()
         {
-            return View(db.AbonnementDTOes.ToList());
+            List<Abonnement> lst = AService.GetAll();
+            return View(lst);
         }
-
-        // GET: Abonnement/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AbonnementDTO abonnementDTO = db.AbonnementDTOes.Find(id);
-            if (abonnementDTO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(abonnementDTO);
-        }
-
-        // GET: Abonnement/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Abonnement/Create
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IsAbo")] AbonnementDTO abonnementDTO)
+        public ActionResult Create(Abonnement abonnement)
         {
             if (ModelState.IsValid)
             {
-                db.AbonnementDTOes.Add(abonnementDTO);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                AService.Add(abonnement);
+                return RedirectToAction("index");
             }
-
-            return View(abonnementDTO);
+            return View(abonnement);
         }
 
-        // GET: Abonnement/Edit/5
+
+
+        public ActionResult Delete(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Abonnement abonnement = context.Abonnements.Find(id);
+            if (abonnement == null)
+            {
+                return HttpNotFound();
+            }
+            return View(abonnement);
+        }
+
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            Abonnement abonnement = context.Abonnements.Find(id);
+            AService.Delete(abonnement);
+            return RedirectToAction("Index");
+        }
+
+
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AbonnementDTO abonnementDTO = db.AbonnementDTOes.Find(id);
-            if (abonnementDTO == null)
+            Abonnement abonnement = context.Abonnements.Find(id);
+            if (abonnement == null)
             {
                 return HttpNotFound();
             }
-            return View(abonnementDTO);
+            return View(abonnement);
         }
 
-        // POST: Abonnement/Edit/5
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IsAbo")] AbonnementDTO abonnementDTO)
+        public ActionResult Edit([Bind(Include = "Id,Name")] Abonnement abonnement)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(abonnementDTO).State = EntityState.Modified;
-                db.SaveChanges();
+                AService.Update(abonnement);
                 return RedirectToAction("Index");
             }
-            return View(abonnementDTO);
-        }
-
-        // GET: Abonnement/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AbonnementDTO abonnementDTO = db.AbonnementDTOes.Find(id);
-            if (abonnementDTO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(abonnementDTO);
-        }
-
-        // POST: Abonnement/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AbonnementDTO abonnementDTO = db.AbonnementDTOes.Find(id);
-            db.AbonnementDTOes.Remove(abonnementDTO);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(abonnement);
         }
     }
 }

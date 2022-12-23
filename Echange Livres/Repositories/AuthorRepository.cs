@@ -10,6 +10,12 @@ namespace Echange_Livres.Repositories
     public class AuthorRepository : IAuthorRepository
     {
         private MyContext context;
+
+        public AuthorRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(Author author)
         {
             context.Authors.Add(author);

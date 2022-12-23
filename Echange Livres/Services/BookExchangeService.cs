@@ -3,6 +3,7 @@ using Echange_Livres.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -39,10 +40,13 @@ namespace Echange_Livres.Services
             repository.SaveAndUpdate(bookEx);
         }
 
+       
+
         public void ValidateExchange(Book b, int newOwner)
         {
-            BookExchange book = (BookExchange) context.Books.Where(bo => bo.Id.Equals(b) || bo.OwnerId.Equals(newOwner));
+
+            BookExchange book = (BookExchange)context.BookExchanges.Where(bo => bo.Book.Equals(b) || bo.OldOwner.Equals(newOwner));
             repository.SaveAndUpdate(book);
-        } 
+        }
     }
 }

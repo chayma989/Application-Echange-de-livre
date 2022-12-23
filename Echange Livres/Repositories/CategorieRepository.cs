@@ -10,6 +10,12 @@ namespace Echange_Livres.Repositories
     public class CategorieRepository : ICategorieRepository
     {
         private MyContext context;
+
+        public CategorieRepository(MyContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(Categorie cat)
         {
             context.Categories.Add(cat);

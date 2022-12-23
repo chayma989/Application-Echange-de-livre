@@ -20,93 +20,128 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Title)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Title)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.ISBN)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.ISBN)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Price)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Price)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Collection)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Collection)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Editor)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Editor)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.SousTitle)
+                @Html.DisplayNameFor(model => model.SubTitle)
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.SousTitle)
+                @Html.DisplayFor(model => model.SubTitle)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Description)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.EditionDate)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.EditionDate)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Photo)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Photo)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.BookState)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.BookState)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Back to List", "Index")
             </div>
         }
     </div>
+
+
+    <style>
+        input[type=text], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 60%;
+            background-color: #6a64f1;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #6a64f1;
+            }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
 </body>
 </html>

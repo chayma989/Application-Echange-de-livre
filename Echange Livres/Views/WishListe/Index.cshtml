@@ -1,32 +1,43 @@
-﻿@model IEnumerable<Echange_Livres.DTOs.WishListeDTO>
+﻿@model IEnumerable<Application_Echange_de_livre.Model.WishListe>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+<h2>My Wish Liste</h2>
+<br />
+<br />
+<div class="container">
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @using (Html.BeginForm("Index", "WishListe", FormMethod.Get))
+        {
+            <div class="col-sm-6">
+                <input type="text" name="search" placeholder="mot clé...." class="form-control" />
+            </div><br />
+            <div class="col-sm-6">
+                <input type="submit" value="Rechercher" style="color: #6a64f1" />
+            </div>
+        }
+
     </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Book.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Name)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="wishliste">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Book.Title)
@@ -35,13 +46,41 @@
                 @Html.DisplayFor(modelItem => item.User.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
-    
-    </table>
-</body>
-</html>
+
+</table>
+
+<style>
+
+    #wishliste {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+    }
+
+        #wishliste td, #wishliste th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #wishliste tr:nth-child(even) {
+            background-color: #f7f0f0;
+        }
+
+        #wishliste tr:hover {
+            background-color: #dbc0e6;
+        }
+
+        #wishliste th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #9a7be8;
+            color: white;
+        }
+</style>

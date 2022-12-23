@@ -6,58 +6,61 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Application_Echange_de_livre.Model;
 using Echange_Livres.DTOs;
 using Echange_Livres.Repositories;
+using Echange_Livres.Services;
 
 namespace Echange_Livres.Controllers
 {
     public class AuthorController : Controller
     {
-        private MyContext db = new MyContext();
+        private AuthorService AuthorService = new AuthorService(new AuthorRepository(new MyContext()));
+        private MyContext context = new MyContext();
+
+
 
         // GET: Author
         public ActionResult Index()
         {
-            return View(db.AuthorDTOes.ToList());
+            List<Author> lst = AuthorService.GetAll();
+            return View(lst);
         }
 
-        // GET: Author/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AuthorDTO authorDTO = db.AuthorDTOes.Find(id);
-            if (authorDTO == null)
+            Author author = context.Authors.Find(id);
+            if (author == null)
             {
                 return HttpNotFound();
             }
-            return View(authorDTO);
+            return View(author);
         }
 
-        // GET: Author/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Author/Create
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] AuthorDTO authorDTO)
+        public ActionResult Create([Bind(Include = "Id,Name")] Author author)
         {
             if (ModelState.IsValid)
             {
-                db.AuthorDTOes.Add(authorDTO);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                AuthorService.Add(author);
+                return RedirectToAction("index");
             }
-
-            return View(authorDTO);
+            return View(author);
         }
+
+
 
         // GET: Author/Edit/5
         public ActionResult Edit(int? id)
@@ -66,29 +69,28 @@ namespace Echange_Livres.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AuthorDTO authorDTO = db.AuthorDTOes.Find(id);
-            if (authorDTO == null)
+            Author author = context.Authors.Find(id);
+            if (author == null)
             {
                 return HttpNotFound();
             }
-            return View(authorDTO);
+            return View(author);
         }
 
-        // POST: Author/Edit/5
-        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AuthorDTO authorDTO)
+        public ActionResult Edit([Bind(Include = "Id,Name")] Author author)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(authorDTO).State = EntityState.Modified;
-                db.SaveChanges();
+                AuthorService.Update(author);
                 return RedirectToAction("Index");
             }
-            return View(authorDTO);
+            return View(author);
         }
+
+
 
         // GET: Author/Delete/5
         public ActionResult Delete(int? id)
@@ -97,32 +99,24 @@ namespace Echange_Livres.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AuthorDTO authorDTO = db.AuthorDTOes.Find(id);
-            if (authorDTO == null)
+            Author author = context.Authors.Find(id);
+            if (author == null)
             {
                 return HttpNotFound();
             }
-            return View(authorDTO);
+            return View(author);
         }
+
+
 
         // POST: Author/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AuthorDTO authorDTO = db.AuthorDTOes.Find(id);
-            db.AuthorDTOes.Remove(authorDTO);
-            db.SaveChanges();
+            Author author = context.Authors.Find(id);
+            AuthorService.Delete(author);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

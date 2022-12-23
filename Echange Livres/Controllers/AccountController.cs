@@ -25,7 +25,7 @@ namespace Echange_Livres.Controllers
             if (ModelState.IsValid)
             {
                 userDto.Photo = userDto.Email + Path.GetExtension(photo.FileName);
-                photo.SaveAs(Server.MapPath("~/Content/UserImage/") + userDto.Photo);
+                photo.SaveAs(Server.MapPath("~/Content/UserImages/") + userDto.Photo);
                 Uservice.Add(userDto);
                 return RedirectToAction("Index", "Login");
             }

@@ -15,5 +15,6 @@ namespace Echange_Livres.Services
         void Update(Book book);
         Book FindById(int id);
         List<Book> Search(string search);
+       
     }
 }

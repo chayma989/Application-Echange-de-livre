@@ -9,6 +9,7 @@ using System.Net;
 using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace Echange_Livres.Controllers
 {
@@ -157,6 +158,34 @@ namespace Echange_Livres.Controllers
             {
                 UService.Update(userDTO);
                 return RedirectToAction("Index");
+            }
+            return View(userDTO);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           UserDTO userDto = context.UserDTOes.Find(id);
+            if (userDto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userDto);
+        }
+
+        public ActionResult Abonnement(int id)
+        {
+            UserDTO userDTO = context.UserDTOes.Find(id);
+            if(userDTO.IsAdmin==true)
+            {
+                userDTO.TotalPoints = 10;
+            }
+            else
+            {
+                userDTO.TotalPoints = 0;
             }
             return View(userDTO);
         }
